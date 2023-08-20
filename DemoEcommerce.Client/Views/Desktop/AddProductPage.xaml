@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoEcommerce.Client.Views.Desktop.AddProductPage"
+             xmlns:viewmode="clr-namespace:DemoEcommerce.Client.ViewModels"
+             x:DataType="viewmode:AddProductPageViewModel"
+             Title="{Binding Title}"
+             xmlns:inputLayout="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:editors="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
+             >
+    
+    <VerticalStackLayout Spacing="8" Margin="10,10,10,0" WidthRequest="500">
+        <Label Text="Add New Product" HorizontalTextAlignment="Center" FontSize="Title"></Label>
+        <inputLayout:SfTextInputLayout Hint="Product Name">
+            <Entry  Text="{Binding AddProductModel.Name}"/>
+        </inputLayout:SfTextInputLayout>
+
+        <inputLayout:SfTextInputLayout Hint="Product Description">
+            <Editor AutoSize="TextChanges" Text="{Binding AddProductModel.Description}" />
+        </inputLayout:SfTextInputLayout>
+
+        <inputLayout:SfTextInputLayout Hint="Product Category">
+            <editors:SfComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Name" TextMemberPath="Name" SelectedItem="{Binding SelectedItem}" />
+        </inputLayout:SfTextInputLayout>
+
+        <inputLayout:SfTextInputLayout Hint="Product Price">
+            <Entry  Text="{Binding AddProductModel.Price}"/>
+        </inputLayout:SfTextInputLayout>
+
+        <inputLayout:SfTextInputLayout Hint="Product Quantity">
+            <Entry  Text="{Binding AddProductModel.Quantity}"/>
+        </inputLayout:SfTextInputLayout>
+
+        <HorizontalStackLayout>
+            <Button Text="Choose Image" BackgroundColor="Transparent" TextColor="blue" Command="{Binding AddImageCommand}" HeightRequest="50"></Button>
+            <Image Source="{Binding ImageSourceFile}" WidthRequest="100" HeightRequest="100"></Image>
+        </HorizontalStackLayout>
+        
+        <Button Text="Save" Command="{Binding SaveProductDataCommand}"></Button>
+    </VerticalStackLayout>
+</ContentPage>

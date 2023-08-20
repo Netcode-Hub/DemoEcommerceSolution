@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="DemoEcommerce.Client.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:desktopHomePage="clr-namespace:DemoEcommerce.Client.Views.Desktop"
+    xmlns:phoneHomePage="clr-namespace:DemoEcommerce.Client.Views.Phone"
+    Shell.FlyoutBehavior="Flyout">
+
+    <ShellContent
+        Title="Home"
+       ContentTemplate="{OnIdiom Desktop={DataTemplate desktopHomePage:DesktopHomePage}, Phone= {DataTemplate phoneHomePage:PhoneHomePage}}"
+        Route="MainPage" />
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent Title="Add Product"
+                          Icon="addproduct.jpg"
+                          ContentTemplate="{DataTemplate desktopHomePage:AddProductPage}" />
+        
+        <ShellContent Title="View Product"
+                  Icon="addproduct.jpg"
+                  ContentTemplate="{DataTemplate phoneHomePage:PhoneHomePage}" />
+    </FlyoutItem>
+
+    <!--ContentTemplate="{OnIdiom Desktop={DataTemplate phoneHomePage:PhoneHomePage}, Phone= {DataTemplate phoneHomePage:PhoneHomePage}}"-->
+    <!--ContentTemplate="{OnIdiom Desktop={DataTemplate desktopHomePage:DesktopHomePage}, Phone= {DataTemplate phoneHomePage:PhoneHomePage}}"-->
+</Shell>

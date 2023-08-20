@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoEcommerce.Client.Views.Phone.PhoneHomePage"
+             xmlns:viewmodel="clr-namespace:DemoEcommerce.Client.ViewModels"
+             x:DataType="viewmodel:PhoneHomePageViewModel"
+             xmlns:models="clr-namespace:DemoEcommerce.Client.Models"
+             Title="{Binding Title}">
+
+    <Grid ColumnDefinitions="*" RowDefinitions="*">
+        <CollectionView ItemsSource="{Binding Products}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout> 
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ProductTem">
+
+                    <Frame CornerRadius="8" Margin="5" BackgroundColor="Transparent">
+                        <VerticalStackLayout Margin="0,0,0,10">
+                            <Image WidthRequest="150" HeightRequest="150" Source="{Binding Image}"></Image>
+                            <Label Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="18" ></Label>
+                            <HorizontalStackLayout HorizontalOptions="Center">
+                                <Label Text="GHS" HorizontalTextAlignment="Center" FontSize="18" ></Label>
+                                <Label Text="{Binding Price}" HorizontalTextAlignment="Center" FontSize="18" ></Label>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
