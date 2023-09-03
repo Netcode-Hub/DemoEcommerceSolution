@@ -1,12 +1,13 @@
 ﻿
-using DemoEcommerce.Client.Models;
+using DemoEcommerce.Library.ClientModels;
+using DemoEcommerce.Library.Responses;
 
 namespace DemoEcommerce.Client.Services
 {
     public interface IProductService
     {
-        Task<List<Category>> GetCategoriesAsync();
-        Task<ServiceResponse> AddProductAsync(Product product);
-        Task<List<Product>> GetProductsAsync();
+        Task<List<CategoryModel>> GetCategoriesAsync();
+        Task<ServiceResponse> AddProductAsync(ProductModel product);
+        Task<List<ProductModel>> GetProductsAsync();
     }
 }

@@ -1,11 +1,6 @@
-﻿using DemoEcommerce.Client.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using DemoEcommerce.Library.ClientModels;
+using DemoEcommerce.Library.Responses;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace DemoEcommerce.Client.Services
 {
     public class ProductService : IProductService
@@ -15,10 +10,9 @@ namespace DemoEcommerce.Client.Services
         {
             this.httpClient = httpClient;
         }
-        
-       // public static string BaseAddress = "https://qpf4bs9j-7234.uks1.devtunnels.ms";
-        public static string BaseAddress = "https://localhost:7234";
-        public async Task<ServiceResponse> AddProductAsync(Product product)
+
+        private static string BaseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "https://hr2swwjh-7234.uks1.devtunnels.ms" : "https://localhost:7234";
+        public async Task<ServiceResponse> AddProductAsync(ProductModel product)
         {
 
             var response = await httpClient.PostAsJsonAsync($"{BaseAddress}/api/Products", product);
@@ -26,17 +20,17 @@ namespace DemoEcommerce.Client.Services
             return result;
         }
 
-        public async Task<List<Category>> GetCategoriesAsync()
+        public async Task<List<CategoryModel>> GetCategoriesAsync()
         {
             var categories = await httpClient.GetAsync($"{BaseAddress}/api/Products/categories");
-            var response = await categories.Content.ReadFromJsonAsync<List<Category>>();
+            var response = await categories.Content.ReadFromJsonAsync<List<CategoryModel>>();
             return response;
         }
 
-        public async Task<List<Product>> GetProductsAsync()
+        public async Task<List<ProductModel>> GetProductsAsync()
         {
             var products = await httpClient.GetAsync($"{BaseAddress}/api/Products");
-            var response = await products.Content.ReadFromJsonAsync<List<Product>>();
+            var response = await products.Content.ReadFromJsonAsync<List<ProductModel>>();
             return response;
         }
     }

@@ -31,9 +31,12 @@ namespace DemoEcommerce.Client
             builder.Services.AddSingleton<PhoneHomePageViewModel>();
             builder.Services.AddSingleton<PhoneHomePage>();
 
-            
+            builder.Services.AddTransient<ViewCartPageViewModel>();
+            builder.Services.AddTransient<ViewCartPage>();
+
             builder.Services.AddHttpClient<IProductService, ProductService>();
-            
+            builder.Services.AddSingleton<ICartService, CartService>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

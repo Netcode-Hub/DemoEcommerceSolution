@@ -1,32 +1,33 @@
 ﻿
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DemoEcommerce.Client.Models;
+
 using DemoEcommerce.Client.Services;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Alerts;
 using MvvmHelpers;
+using DemoEcommerce.Library.ClientModels;
 
 namespace DemoEcommerce.Client.ViewModels
 {
     public partial class AddProductPageViewModel : BaseViewModel
     {
-        public ObservableRangeCollection<Category> Categories { get; set; } = new();
+        public ObservableRangeCollection<CategoryModel> Categories { get; set; } = new();
 
         [ObservableProperty]
-        private Product _addProductModel;
+        private ProductModel _addProductModel;
 
         [ObservableProperty]
         ImageSource _imageSourceFile;
 
         [ObservableProperty]
-        private Category _selectedItem;
+        private CategoryModel _selectedItem;
 
         private readonly IProductService productService;
         public AddProductPageViewModel(IProductService productService)
         {
             Title = "Add Product";
-            AddProductModel = new Product();
+            AddProductModel = new ProductModel();
             this.productService = productService;
             LoadCategories();
         }
@@ -92,7 +93,7 @@ namespace DemoEcommerce.Client.ViewModels
 
             AddProductModel.CategoryId = SelectedItem.Id;
             var result = await productService.AddProductAsync(AddProductModel);
-            Maketoast(result.Message);
+            await DisplayToast.Maketoast(result.Message);
         }
 
         private async void LoadCategories()
@@ -108,13 +109,5 @@ namespace DemoEcommerce.Client.ViewModels
                 Categories.Add(category);
         }
 
-        private async void Maketoast(string message)
-        {
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-            ToastDuration duration = ToastDuration.Long;
-            double fontSize = 18;
-            var toast = Toast.Make(message, duration, fontSize);
-            await toast.Show(cancellationTokenSource.Token);
-        }
     }
 }

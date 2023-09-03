@@ -4,26 +4,34 @@
              x:Class="DemoEcommerce.Client.Views.Phone.PhoneHomePage"
              xmlns:viewmodel="clr-namespace:DemoEcommerce.Client.ViewModels"
              x:DataType="viewmodel:PhoneHomePageViewModel"
-             xmlns:models="clr-namespace:DemoEcommerce.Client.Models"
+             xmlns:models="clr-namespace:DemoEcommerce.Library.ClientModels;assembly=DemoEcommerce.Library"
+             xmlns:controls="clr-namespace:DemoEcommerce.Client.CustomControls"
              Title="{Binding Title}">
 
-    <Grid ColumnDefinitions="*" RowDefinitions="*">
+    <Grid ColumnDefinitions="*" RowDefinitions="*" IsEnabled="{Binding ContentDisabled}">
         <CollectionView ItemsSource="{Binding Products}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" Span="2" />
-            </CollectionView.ItemsLayout> 
-            
+            </CollectionView.ItemsLayout>
+
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:ProductTem">
+                <DataTemplate x:DataType="models:ProductModel">
 
                     <Frame CornerRadius="8" Margin="5" BackgroundColor="Transparent">
                         <VerticalStackLayout Margin="0,0,0,10">
-                            <Image WidthRequest="150" HeightRequest="150" Source="{Binding Image}"></Image>
+                            <controls:CustomImageControl Base64Source="{Binding Image}" WidthRequest="150" HeightRequest="150"></controls:CustomImageControl>
                             <Label Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="18" ></Label>
+                            <Label Text="{Binding Description}" FontSize="14" HorizontalTextAlignment="Center"></Label>
+                            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="5" Margin="0,3,0,0">
+                                <Label Text="Quantity available. " FontSize="14" HorizontalTextAlignment="Center" TextColor="IndianRed"></Label>
+                                <Label Text="{Binding Quantity}" FontSize="14" HorizontalTextAlignment="Center"></Label>
+                            </HorizontalStackLayout>
                             <HorizontalStackLayout HorizontalOptions="Center">
                                 <Label Text="GHS" HorizontalTextAlignment="Center" FontSize="18" ></Label>
                                 <Label Text="{Binding Price}" HorizontalTextAlignment="Center" FontSize="18" ></Label>
                             </HorizontalStackLayout>
+                            <ImageButton Source="addtocart.jpg"  WidthRequest="150" HeightRequest="70" HorizontalOptions="CenterAndExpand" Margin="0,-5,0,0" 
+                                         Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodel:PhoneHomePageViewModel}}, Path=AddToCartCommand}" CommandParameter="{Binding .}"></ImageButton>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>

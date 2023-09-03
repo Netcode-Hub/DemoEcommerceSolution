@@ -51,6 +51,10 @@
 	<ItemGroup>
 	  <None Remove="Platforms\Android\Resources\xml\network_security_config.xml" />
 	  <None Remove="Resources\Images\addproduct.jpg" />
+	  <None Remove="Resources\Images\addtocart.jpg" />
+	  <None Remove="Resources\Images\emptycart.jpg" />
+	  <None Remove="Resources\Images\proceedtocheckout.jpg" />
+	  <None Remove="Resources\Images\viewcart.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -64,6 +68,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\DemoEcommerce.Library\DemoEcommerce.Library.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Views\Desktop\AddProductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -71,6 +79,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Phone\PhoneHomePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Phone\ViewCartPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

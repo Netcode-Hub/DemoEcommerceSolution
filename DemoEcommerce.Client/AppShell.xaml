@@ -20,6 +20,11 @@
         <ShellContent Title="View Product"
                   Icon="addproduct.jpg"
                   ContentTemplate="{DataTemplate phoneHomePage:PhoneHomePage}" />
+
+        <ShellContent Title="View Cart"
+        Icon="viewcart.jpg"
+        ContentTemplate="{DataTemplate phoneHomePage:ViewCartPage}" />
+        
     </FlyoutItem>
 
     <!--ContentTemplate="{OnIdiom Desktop={DataTemplate phoneHomePage:PhoneHomePage}, Phone= {DataTemplate phoneHomePage:PhoneHomePage}}"-->

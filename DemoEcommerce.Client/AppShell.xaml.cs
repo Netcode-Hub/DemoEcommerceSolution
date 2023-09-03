@@ -1,4 +1,5 @@
 ﻿using DemoEcommerce.Client.Views.Desktop;
+using DemoEcommerce.Client.Views.Phone;
 
 namespace DemoEcommerce.Client
 {
@@ -8,7 +9,7 @@ namespace DemoEcommerce.Client
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(AddProductPage), typeof(AddProductPage));
-
+            Routing.RegisterRoute(nameof(ViewCartPage), typeof(ViewCartPage));
         }
     }
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DemoEcommerce.Client.Views.Phone.ViewCartPage"
+             xmlns:viewmodel="clr-namespace:DemoEcommerce.Client.ViewModels"
+            x:DataType="viewmodel:ViewCartPageViewModel"
+            xmlns:models="clr-namespace:DemoEcommerce.Library.ClientModels;assembly=DemoEcommerce.Library"
+            xmlns:controls="clr-namespace:DemoEcommerce.Client.CustomControls"
+            Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout>
+            <Image Source="emptycart.jpg" IsVisible="{Binding ShowCartEmptyLabel}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="300" Margin="0,150,0,0" />
+
+            <CollectionView ItemsSource="{Binding MyCartModel}" IsVisible="{Binding ShowCartLabel}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:CartModel">
+                        <Frame BorderColor="IndianRed" Padding="0" Margin="5">
+                            <HorizontalStackLayout>
+                                <controls:CustomImageControl Base64Source="{Binding ProductImage}" WidthRequest="150" HeightRequest="150"></controls:CustomImageControl>
+                                <VerticalStackLayout Spacing="10" VerticalOptions="CenterAndExpand">
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label Text="Product Name: "></Label>
+                                        <Label Text="{Binding ProductName}"></Label>
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label Text="Product Price: "></Label>
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label Text="GHS"></Label>
+                                            <Label Text="{Binding ProductPrice}"></Label>
+                                        </HorizontalStackLayout>
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label Text="Quantity Ordered: "></Label>
+                                        <Label Text="{Binding OrderQuantity}"></Label>
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label Text="SubTotal: " FontAttributes="Bold"></Label>
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label Text="GHS " FontAttributes="Bold"></Label>
+                                            <Label Text="{Binding SubTotal}" FontAttributes="Bold"></Label>
+                                        </HorizontalStackLayout>
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Frame HorizontalOptions="End" WidthRequest="400" Margin="8,8,8,1"  IsVisible="{Binding ShowCartLabel}">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="-----Summary Of Your Shopping------" FontSize="Subtitle" Margin="0,5,10,10"></Label>
+
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="Number of items: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding NumberOfItemsR}"></Label>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Tax: " FontAttributes="Bold" Margin="0,0,5,0"></Label>
+                        <Label Text="{Binding TaxR}"></Label>
+                        <Label Text="%"></Label>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout>
+                        <Label Text="Discount: " FontAttributes="Bold" Margin="0,0,5,0"></Label>
+                        <Label Text="{Binding DiscountR}"></Label>
+                        <Label Text="%"></Label>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="5">
+                        <Label Text="GrandTotal: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding GrandTotalR}"></Label>
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Spacing="5" Margin="0,0,0,1">
+                        <Label Text="Payable Amount: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding PayableAmountR}"></Label>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+            <ImageButton Source="proceedtocheckout.jpg" WidthRequest="300" HorizontalOptions="EndAndExpand"  IsVisible="{Binding ShowCartLabel}"></ImageButton>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
